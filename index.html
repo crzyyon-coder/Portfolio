@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ciarra Williams — Creative Director & Brand Strategist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --red: #B01E15;
+    --red-mid: #C0251B;
+    --red-deep: #7A1008;
+    --red-light: #F7ECEB;
+    --black: #0B0B0B;
+    --off-black: #141414;
+    --charcoal: #222222;
+    --mid: #777770;
+    --warm-white: #F8F6F3;
+    --white: #FFFFFF;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --mono: 'DM Mono', monospace;
+    --ease: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--warm-white); color: var(--black); font-family: var(--sans); font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 3rem; background: rgba(11,11,11,0.95); backdrop-filter: blur(12px); }
+  .nav-logo { font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: var(--white); text-decoration: none; }
+  .nav-logo span { color: var(--red-mid); }
+  nav ul { list-style: none; display: flex; gap: 2.5rem; }
+  nav a { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); text-decoration: none; transition: color var(--ease); }
+  nav a:hover { color: var(--red-mid); }
+
+  #hero { min-height: 100vh; background: var(--black); display: grid; grid-template-columns: 55% 45%; padding-top: 60px; position: relative; overflow: hidden; }
+  .hero-bg-text { position: absolute; bottom: -0.05em; left: -0.02em; font-family: var(--serif); font-size: 22vw; font-weight: 900; font-style: italic; color: rgba(255,255,255,0.022); line-height: 1; user-select: none; pointer-events: none; white-space: nowrap; }
+  .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 5rem 3rem 5rem 3.5rem; position: relative; z-index: 2; }
+  .hero-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--red-mid); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem; }
+  .hero-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--red-mid); }
+  .hero-name { font-family: var(--serif); font-size: clamp(3.5rem, 6vw, 6.5rem); font-weight: 900; line-height: 0.95; color: var(--white); margin-bottom: 1.5rem; }
+  .hero-name em { font-style: italic; color: var(--red-mid); }
+  .hero-role { font-family: var(--serif); font-style: italic; font-size: clamp(1rem, 1.6vw, 1.35rem); color: rgba(255,255,255,0.4); margin-bottom: 2.5rem; }
+  .hero-tagline { font-size: 13px; color: rgba(255,255,255,0.6); max-width: 380px; line-height: 1.85; padding-left: 1.25rem; border-left: 1.5px solid var(--red-mid); margin-bottom: 3rem; }
+  .hero-ctas { display: flex; gap: 1rem; }
+  .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 2rem; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500; text-decoration: none; transition: all var(--ease); cursor: pointer; border: none; font-family: var(--sans); }
+  .btn-red { background: var(--red-mid); color: var(--white); }
+  .btn-red:hover { background: var(--red-deep); }
+  .btn-ghost { background: transparent; color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.2); }
+  .btn-ghost:hover { color: var(--white); border-color: rgba(255,255,255,0.5); }
+  .btn-white { background: var(--white); color: var(--red-deep); }
+  .btn-white:hover { background: var(--black); color: var(--white); }
+  .btn-ghost-r { background: transparent; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.35); }
+  .btn-ghost-r:hover { color: var(--white); border-color: var(--white); }
+
+  .hero-right { display: flex; flex-direction: column; justify-content: flex-end; padding: 3rem 3rem 4rem 2rem; position: relative; z-index: 2; }
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 2.5rem; }
+  .stat { background: rgba(255,255,255,0.04); padding: 1.5rem 1.25rem; border: 0.5px solid rgba(255,255,255,0.07); }
+  .stat-num { font-family: var(--serif); font-size: 2rem; font-weight: 700; color: var(--red-mid); line-height: 1; margin-bottom: 0.4rem; }
+  .stat-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); line-height: 1.4; }
+  .hero-press-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 0.75rem; }
+  .press-logos { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  .press-item { font-family: var(--serif); font-style: italic; font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.4); }
+  .press-dot { width: 3px; height: 3px; background: var(--red-mid); border-radius: 50%; opacity: 0.4; }
+
+  .marquee-bar { background: var(--red); padding: 0.7rem 0; overflow: hidden; white-space: nowrap; }
+  .marquee-inner { display: inline-block; animation: marquee 28s linear infinite; }
+  .marquee-inner span { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.85); padding: 0 2.5rem; }
+  .msep { color: rgba(255,255,255,0.35); }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  .slabel { font-family: var(--mono); font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red-mid); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.6rem; }
+  .slabel::after { content: ''; width: 36px; height: 1px; background: var(--red-mid); opacity: 0.4; }
+  .slabel.light { color: rgba(255,255,255,0.3); }
+  .slabel.light::after { background: rgba(255,255,255,0.15); }
+  .stitle { font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 3.25rem); font-weight: 700; line-height: 1.05; color: var(--black); margin-bottom: 1.25rem; }
+  .stitle em { font-style: italic; color: var(--red-mid); }
+  .stitle.light { color: var(--white); }
+
+  #about { background: var(--white); display: grid; grid-template-columns: 1fr 1.7fr; gap: 0; padding: 0; }
+  .about-sticky { background: var(--black); padding: 5rem 3rem; display: flex; flex-direction: column; justify-content: center; position: sticky; top: 60px; min-height: calc(100vh - 60px); }
+  .about-tagline { font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: rgba(255,255,255,0.45); line-height: 1.5; margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 0.5px solid rgba(255,255,255,0.08); }
+  .creds { display: flex; flex-direction: column; gap: 1rem; }
+  .cred { display: flex; flex-direction: column; gap: 0.2rem; }
+  .cred-key { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red-mid); }
+  .cred-val { font-size: 12.5px; color: rgba(255,255,255,0.45); line-height: 1.4; }
+  .about-body { padding: 5rem 4rem 5rem 3.5rem; }
+  .ap { font-size: 1rem; color: var(--charcoal); line-height: 1.9; margin-bottom: 1.5rem; }
+  .ap strong { font-weight: 500; color: var(--black); }
+  .pullquote { font-family: var(--serif); font-style: italic; font-size: 1.45rem; font-weight: 700; color: var(--black); line-height: 1.35; margin: 2.5rem 0; padding: 2rem 2rem 2rem 2.5rem; border-left: 3px solid var(--red-mid); background: var(--warm-white); }
+  .pullquote em { color: var(--red-mid); font-style: normal; }
+  .bridge { background: var(--red-light); padding: 1.5rem 2rem; border-left: 3px solid var(--red-mid); margin-top: 2rem; }
+  .bridge-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red-mid); margin-bottom: 0.5rem; }
+  .bridge p { font-size: 13px; color: var(--charcoal); line-height: 1.7; }
+
+  #featured { background: var(--black); padding: 5rem 3.5rem; }
+  .feat-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
+  .feat-note { font-size: 11px; color: rgba(255,255,255,0.28); max-width: 280px; text-align: right; line-height: 1.6; font-style: italic; }
+  .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .video-card { position: relative; overflow: hidden; background: var(--off-black); cursor: pointer; }
+  .video-card video { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; opacity: 0.6; transition: opacity var(--ease); }
+  .video-card:hover video { opacity: 0.82; }
+  .video-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem; background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.1) 55%, transparent 100%); pointer-events: none; }
+  .video-brand { font-family: var(--mono); font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--red-mid); margin-bottom: 0.4rem; }
+  .video-title { font-family: var(--serif); font-weight: 700; font-size: 1.5rem; color: var(--white); line-height: 1.2; margin-bottom: 0.5rem; }
+  .video-desc { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+  .video-badge { position: absolute; top: 1.25rem; right: 1.25rem; background: var(--red-mid); font-family: var(--mono); font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); padding: 0.3rem 0.75rem; pointer-events: none; }
+
+  #campaigns { background: var(--warm-white); padding: 5rem 3.5rem; }
+  .camp-intro { max-width: 640px; margin-bottom: 3.5rem; }
+  .camp-intro p { font-size: 14px; color: var(--mid); line-height: 1.8; margin-top: 1rem; }
+  .camp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+  .camp-card { background: var(--white); padding: 2.5rem 2.25rem; position: relative; overflow: hidden; transition: transform var(--ease); }
+  .camp-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--red-mid); transform: scaleX(0); transform-origin: left; transition: transform var(--ease); }
+  .camp-card:hover::after { transform: scaleX(1); }
+  .camp-card:hover { transform: translateY(-3px); }
+  .camp-brand { font-family: var(--mono); font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--red-mid); margin-bottom: 0.4rem; }
+  .camp-name { font-family: var(--serif); font-weight: 900; font-size: 1.5rem; color: var(--black); line-height: 1.15; margin-bottom: 0.3rem; }
+  .camp-type { font-size: 11px; color: var(--mid); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 0.5px solid rgba(0,0,0,0.08); }
+  .camp-desc { font-size: 13.5px; color: var(--charcoal); line-height: 1.75; margin-bottom: 1.25rem; }
+  .camp-role-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid); margin-bottom: 0.35rem; }
+  .camp-role { font-size: 12px; color: var(--charcoal); line-height: 1.5; }
+  .camp-num { position: absolute; bottom: -0.1em; right: 0.5rem; font-family: var(--serif); font-size: 8rem; font-weight: 900; color: rgba(0,0,0,0.03); line-height: 1; user-select: none; pointer-events: none; }
+
+  #mpp { background: var(--black); padding: 5rem 3.5rem; }
+  .mpp-header { display: grid; grid-template-columns: 1fr 1.8fr; gap: 4rem; align-items: start; margin-bottom: 4rem; }
+  .mpp-body { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.85; margin-top: 1.25rem; }
+  .mpp-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+  .mpp-pill { font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red-mid); padding: 0.3rem 0.75rem; border: 0.5px solid rgba(192,37,27,0.35); }
+  .mpp-products { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+  .mpp-prod { background: rgba(255,255,255,0.04); border: 0.5px solid rgba(255,255,255,0.06); padding: 2rem 1.5rem; }
+  .prod-type { font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red-mid); margin-bottom: 0.35rem; }
+  .prod-name { font-family: var(--serif); font-weight: 700; font-size: 1rem; color: var(--white); line-height: 1.2; margin-bottom: 0.75rem; }
+  .prod-desc { font-size: 12px; color: rgba(255,255,255,0.38); line-height: 1.65; margin-bottom: 0.75rem; }
+  .prod-role { font-size: 11px; color: rgba(255,255,255,0.22); font-style: italic; line-height: 1.5; }
+
+  #editorial { background: var(--white); padding: 5rem 3.5rem; }
+  .ed-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin-top: 3rem; }
+  .ed-card { background: var(--warm-white); padding: 2rem 2rem 2.5rem; transition: background var(--ease); }
+  .ed-card:hover { background: #EEEBE6; }
+  .ed-pub { font-family: var(--serif); font-style: italic; font-size: 10.5px; color: var(--red-mid); margin-bottom: 0.75rem; }
+  .ed-title { font-family: var(--serif); font-size: 1.25rem; font-weight: 700; color: var(--black); line-height: 1.25; margin-bottom: 0.75rem; }
+  .ed-desc { font-size: 13px; color: var(--mid); line-height: 1.7; margin-bottom: 0.75rem; }
+  .ed-role { font-size: 11px; color: rgba(0,0,0,0.33); font-style: italic; }
+
+  #expertise { background: var(--black); padding: 5rem 3.5rem; }
+  .exp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 3rem; }
+  .exp-col { background: rgba(255,255,255,0.03); border: 0.5px solid rgba(255,255,255,0.06); padding: 2rem 1.5rem; }
+  .exp-col-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red-mid); margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 0.5px solid rgba(192,37,27,0.25); }
+  .exp-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .exp-list li { font-size: 12.5px; color: rgba(255,255,255,0.42); padding-left: 0.75rem; border-left: 1.5px solid transparent; transition: border-color var(--ease), color var(--ease); }
+  .exp-list li:hover { border-color: var(--red-mid); color: rgba(255,255,255,0.72); }
+
+  #contact { background: var(--red-mid); padding: 7rem 3.5rem; text-align: center; }
+  #contact .slabel { justify-content: center; color: rgba(255,255,255,0.45); }
+  #contact .slabel::after { display: none; }
+  #contact .stitle { color: var(--white); }
+  .contact-body { font-size: 15px; color: rgba(255,255,255,0.68); max-width: 520px; margin: 1rem auto 1.5rem; line-height: 1.75; }
+  .contact-detail { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 2.5rem; }
+  .cta-row { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+  .service-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; max-width: 700px; margin: 0 auto; }
+  .stag { font-size: 11px; padding: 0.35rem 1rem; border: 0.5px solid rgba(255,255,255,0.22); color: rgba(255,255,255,0.5); letter-spacing: 0.06em; }
+
+  footer { background: var(--off-black); padding: 2rem 3.5rem; display: flex; justify-content: space-between; align-items: center; }
+  footer p { font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.2); }
+  .foot-links { display: flex; gap: 2rem; }
+  .foot-links a { font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.22); text-decoration: none; transition: color var(--ease); }
+  .foot-links a:hover { color: var(--red-mid); }
+
+  .rv { opacity: 0; transform: translateY(24px); transition: opacity 0.75s ease, transform 0.75s ease; }
+  .rv.vis { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 960px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { gap: 1rem; }
+    #hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 4rem 1.75rem 2rem; }
+    .hero-right { padding: 2rem 1.75rem 3rem; }
+    #about { grid-template-columns: 1fr; }
+    .about-sticky { position: static; min-height: auto; padding: 3.5rem 1.75rem; }
+    .about-body { padding: 2.5rem 1.75rem; }
+    .mpp-header { grid-template-columns: 1fr; gap: 1.5rem; }
+    .feat-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .feat-note { text-align: left; max-width: 100%; }
+    .video-grid, .camp-grid, .mpp-products, .ed-grid, .exp-grid { grid-template-columns: 1fr; }
+    #featured, #campaigns, #mpp, #editorial, #expertise, #contact { padding: 4rem 1.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-logo">Ciarra<span>.</span></a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#featured">Video</a></li>
+    <li><a href="#campaigns">Campaigns</a></li>
+    <li><a href="#mpp">Brand</a></li>
+    <li><a href="#editorial">Editorial</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg-text">CW</div>
+  <div class="hero-left">
+    <p class="hero-eyebrow">Creative Director &amp; Brand Energy Strategist</p>
+    <h1 class="hero-name">Ciarra<br><em>Williams</em></h1>
+    <p class="hero-role">Your vision is your vibe.</p>
+    <p class="hero-tagline">I build brand worlds that people instantly connect with — through emotional storytelling, elevated creative direction, and strategy that moves audiences before it moves product.</p>
+    <div class="hero-ctas">
+      <a href="#featured" class="btn btn-red">See the Work</a>
+      <a href="#contact" class="btn btn-ghost">Let's Create</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">157K+</div><div class="stat-label">Organic views in &lt;3 weeks</div></div>
+      <div class="stat"><div class="stat-num">Multi</div><div class="stat-label">Brand concepts</div></div>
+      <div class="stat"><div class="stat-num">2</div><div class="stat-label">Brands founded &amp; built</div></div>
+      <div class="stat"><div class="stat-num">7+</div><div class="stat-label">Years editorial &amp; content</div></div>
+    </div>
+    <p class="hero-press-label">Featured in</p>
+    <div class="press-logos">
+      <span class="press-item">Essence</span>
+      <span class="press-dot"></span>
+      <span class="press-item">The Cincinnati Herald</span>
+      <span class="press-dot"></span>
+      <span class="press-item">The Scout Guide</span>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-bar" aria-hidden="true">
+  <div class="marquee-inner">
+    <span>Creative Direction <span class="msep">✦</span></span><span>Brand Strategy <span class="msep">✦</span></span><span>Editorial Storytelling <span class="msep">✦</span></span><span>Campaign Concepting <span class="msep">✦</span></span><span>Visual Identity <span class="msep">✦</span></span><span>Content Direction <span class="msep">✦</span></span><span>Beauty · Wellness · Lifestyle <span class="msep">✦</span></span><span>Clean Bold Fashion-Forward <span class="msep">✦</span></span><span>The Stories We Tell <span class="msep">✦</span></span><span>Creative Direction <span class="msep">✦</span></span><span>Brand Strategy <span class="msep">✦</span></span><span>Editorial Storytelling <span class="msep">✦</span></span><span>Campaign Concepting <span class="msep">✦</span></span><span>Visual Identity <span class="msep">✦</span></span><span>Content Direction <span class="msep">✦</span></span><span>Beauty · Wellness · Lifestyle <span class="msep">✦</span></span><span>Clean Bold Fashion-Forward <span class="msep">✦</span></span><span>The Stories We Tell <span class="msep">✦</span></span>
+  </div>
+</div>
+
+<section id="about">
+  <div class="about-sticky">
+    <p class="slabel light">01 — About</p>
+    <h2 class="stitle light">Every brand<br>carries an<br><em>energy.</em></h2>
+    <p class="about-tagline">I know how to find it — and how to bring it to life.</p>
+    <div class="creds">
+      <div class="cred"><span class="cred-key">Titles</span><span class="cred-val">Creative Director · Brand Energy Strategist</span></div>
+      <div class="cred"><span class="cred-key">Founded</span><span class="cred-val">The Stories We Tell LLC · My Pure Package</span></div>
+      <div class="cred"><span class="cred-key">Editorial</span><span class="cred-val">Essence · The Cincinnati Herald · The Scout Guide</span></div>
+      <div class="cred"><span class="cred-key">Education</span><span class="cred-val">Tiffin University · Harvard · UC Berkeley</span></div>
+      <div class="cred"><span class="cred-key">Location</span><span class="cred-val">Cincinnati, OH — Open to Remote + Travel</span></div>
+    </div>
+  </div>
+  <div class="about-body rv">
+    <p class="ap">Ciarra Williams is a <strong>Creative Director and Brand Energy Strategist</strong> who blends editorial storytelling, modern design, and emotional insight to create brand worlds that people instantly connect with.</p>
+    <p class="ap">Her work centers on the belief that every brand carries an energy — a feeling — that shapes how audiences respond. Through strategic visuals, thoughtful narratives, and elevated campaign direction, she transforms ideas into experiences that are intentional, human, and unforgettable.</p>
+    <div class="pullquote">"From conceptual campaigns to content direction across beauty, lifestyle, and wellness — I bring a vision that is both intuitive and strategic. <em>Merging aesthetics with purpose</em> to help brands show up with clarity and confidence."</div>
+    <p class="ap">As founder of <strong>My Pure Package</strong>, she has seen brand-building from every angle: concepting, formulating, naming, packaging, photographing, and launching. That full-stack creative ownership is rare, and it shows in every concept she touches.</p>
+    <p class="ap">She reaches 157,000+ people organically through written storytelling on Threads alone — proof that her instincts for narrative, timing, and voice translate across every format and platform.</p>
+    <div class="bridge">
+      <p class="bridge-label">Strategic Range</p>
+      <p>Alongside her creative work, Ciarra serves as Financial Systems Information Owner and Communications Lead for the U.S. Air Force — translating complex enterprise systems into clear, human language for thousands of users. Same skill, different terrain: making the complicated feel approachable.</p>
+    </div>
+  </div>
+</section>
+
+<section id="featured">
+  <div class="feat-header rv">
+    <div>
+      <p class="slabel light">02 — Video Concepts</p>
+      <h2 class="stitle light">Concept<br><em>Direction</em></h2>
+    </div>
+    <p class="feat-note">Conceptual campaign videos directed and produced by Ciarra Williams. Visual assets used for creative exploration only.</p>
+  </div>
+  <div class="video-grid rv">
+    <div class="video-card">
+      <video src="EADEM_CONCEPT.mp4" autoplay muted loop playsinline></video>
+      <div class="video-badge">Concept Direction</div>
+      <div class="video-overlay">
+        <p class="video-brand">EADEM</p>
+        <h3 class="video-title">Skin That Belongs</h3>
+        <p class="video-desc">An editorial concept for the AAPI-founded inclusive skincare brand — grounded in cultural identity, ingredient transparency, and the radical act of being seen.</p>
+      </div>
+    </div>
+    <div class="video-card">
+      <video src="RHODE_CONCEPT.mp4" autoplay muted loop playsinline></video>
+      <div class="video-badge">Concept Direction</div>
+      <div class="video-overlay">
+        <p class="video-brand">Rhode</p>
+        <h3 class="video-title">Rhode</h3>
+        <p class="video-desc">A soft-luxury concept capturing Rhode's signature aesthetic — glazed skin, effortless ritual, and the feeling of a brand that knows exactly who it's talking to.</p>
+      </div>
+    </div>
+    <div class="video-card">
+      <video src="SUMMER_FRIDAYS.mp4" autoplay muted loop playsinline></video>
+      <div class="video-badge">Concept Direction</div>
+      <div class="video-overlay">
+        <p class="video-brand">Summer Fridays</p>
+        <h3 class="video-title">Summer Fridays</h3>
+        <p class="video-desc">A beauty campaign concept built around soft lifestyle storytelling, product desire, and effortless everyday ritual.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="campaigns">
+  <div class="camp-intro rv">
+    <p class="slabel">03 — Multi Brand Concepts</p>
+    <h2 class="stitle">Multi Brand<br><em>Concepts</em></h2>
+    <p>Conceptual campaigns reimagining how brands can show up with purpose, feeling, and identity — beyond trends or templates. Each concept demonstrates the ability to shape narrative, define tone, and build visual worlds that resonate.</p>
+  </div>
+  <div class="camp-grid" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="camp-card rv">
+      <img src="BRING_THE_BOLD.jpeg" alt="E.L.F. Bring The Bold campaign" style="width:100%; aspect-ratio:4/3; object-fit:cover; object-position:top; display:block; margin-bottom:1.5rem;">
+      <p class="camp-brand">E.L.F. Cosmetics</p>
+      <h3 class="camp-name">Bring The Bold.</h3>
+      <p class="camp-type">Holiday Campaign — Inclusive + Fearless</p>
+      <p class="camp-desc">A holiday beauty moment designed for every complexion and every room. "Bring The Bold" celebrates deep color, oversized confidence, and fearless expression — from deep ebony to porcelain.</p>
+      <p class="camp-role-label">My Role</p>
+      <p class="camp-role">Concept development · Messaging direction · Hero visual creation</p>
+      <span class="camp-num">01</span>
+    </div>
+    <div class="camp-card rv" style="transition-delay:0.08s">
+      <img src="LITTLE_SPOON.jpeg" alt="Little Spoon Spoonfuls of Support campaign" style="width:100%; aspect-ratio:4/3; object-fit:cover; object-position:top; display:block; margin-bottom:1.5rem;">
+      <p class="camp-brand">Little Spoon</p>
+      <h3 class="camp-name">Spoonfuls of Support</h3>
+      <p class="camp-type">Community + Connection Campaign</p>
+      <p class="camp-desc">A nurturing, community-driven concept celebrating real parents, real moments, and the support systems that make everyday life feel lighter — making Little Spoon feel less like a product and more like a partner.</p>
+      <p class="camp-role-label">My Role</p>
+      <p class="camp-role">Concept creation · Campaign messaging · Storytelling · Emotional tone</p>
+      <span class="camp-num">02</span>
+    </div>
+    <div class="camp-card rv" style="transition-delay:0.16s">
+      <img src="FENTY_BEAUTY.jpeg" alt="Fenty Beauty After Dark campaign" style="width:100%; aspect-ratio:4/3; object-fit:cover; object-position:top; display:block; margin-bottom:1.5rem;">
+      <p class="camp-brand">Fenty Beauty</p>
+      <h3 class="camp-name">After Dark</h3>
+      <p class="camp-type">Editorial Beauty Campaign</p>
+      <p class="camp-desc">A bold editorial exploring futuristic shimmer, nighttime glamour, and neon-lit skin — metallic textures, sapphire tones, fearless self-expression. Fenty as the definitive brand for the night.</p>
+      <p class="camp-role-label">My Role</p>
+      <p class="camp-role">Creative direction · Campaign concepting · Visual development · Color story</p>
+      <span class="camp-num">03</span>
+    </div>
+    <div class="camp-card rv" style="transition-delay:0.08s">
+      <img src="NIKE_CAMPAIGN.jpeg" alt="Nike Breathe First campaign" style="width:100%; aspect-ratio:4/3; object-fit:cover; object-position:top; display:block; margin-bottom:1.5rem;">
+      <p class="camp-brand">Nike</p>
+      <h3 class="camp-name">Breathe First</h3>
+      <p class="camp-type">Lifestyle + Wellness Campaign</p>
+      <p class="camp-desc">A wellness-focused concept blending mindfulness with movement. Breath, presence, and the quiet strength behind everyday athletes — soft lighting, minimalism, and intentional motion. Nike as companion for stillness, not just speed.</p>
+      <p class="camp-role-label">My Role</p>
+      <p class="camp-role">Creative direction · Story development · Visual concepting</p>
+      <span class="camp-num">04</span>
+    </div>
+    <div class="camp-card rv" style="transition-delay:0.16s">
+      <img src="WHISKED_CAMPAIGN.jpeg" alt="Whisked Girl campaign" style="width:100%; aspect-ratio:4/3; object-fit:cover; object-position:top; display:block; margin-bottom:1.5rem;">
+      <p class="camp-brand">Whisked — Original Concept</p>
+      <h3 class="camp-name">Stillness Is the New Luxury.</h3>
+      <p class="camp-type">Black Girl Luxury · Matcha Wellness Campaign</p>
+      <p class="camp-desc">A conceptual campaign rooted in the intersection of Black girl luxury and intentional wellness. "Whisked Girl" reimagines matcha culture through a lens of softness, stillness, and elevated ritual — "Drink your calm."</p>
+      <p class="camp-role-label">My Role</p>
+      <p class="camp-role">Concept creation · Brand naming · Campaign messaging · Mood direction · Visual world-building</p>
+      <span class="camp-num">05</span>
+    </div>
+    <div class="camp-card rv" style="transition-delay:0.24s">
+      <img src="WHISKED_MOOD.jpeg" alt="Whisked Girl mood board" style="width:100%; aspect-ratio:4/3; object-fit:cover; object-position:top; display:block; margin-bottom:1.5rem;">
+      <p class="camp-brand">Whisked — Brand World</p>
+      <h3 class="camp-name">The Art of Slow</h3>
+      <p class="camp-type">Brand Identity · Mood System</p>
+      <p class="camp-desc">The visual identity and mood system behind Whisked — a matcha wellness brand built around slowing down. Color palette, ritual objects, and brand energy curated into a world that feels both elevated and deeply personal.</p>
+      <p class="camp-role-label">My Role</p>
+      <p class="camp-role">Brand identity · Mood board · Color story · Visual system · Copywriting</p>
+      <span class="camp-num">06</span>
+    </div>
+  </div>
+</section>
+
+<section id="mpp">
+  <div class="mpp-header rv">
+    <div>
+      <p class="slabel light">04 — Founder Work</p>
+      <h2 class="stitle light">My Pure<br><em>Package</em></h2>
+    </div>
+    <div>
+      <p class="mpp-body">A sensory-driven self-care brand rooted in ritual, emotion, and intentional wellness — built from concept to creation. Visual identity, packaging systems, product formulations, storytelling, and photography direction. The brand blends neutral tones, warm textures, and soft luxury to create a world where self-love feels personal, grounded, and transformative.</p>
+      <p style="margin-top:1.25rem;"><a href="https://mypurepackage.com/" target="_blank" rel="noopener noreferrer" class="btn btn-red">Visit My Pure Package</a></p>
+      <div class="mpp-pills">
+        <span class="mpp-pill">Creative Director</span><span class="mpp-pill">Product Designer</span><span class="mpp-pill">Visual Strategist</span><span class="mpp-pill">Packaging Design</span><span class="mpp-pill">Copywriting</span><span class="mpp-pill">Photography Direction</span><span class="mpp-pill">Brand Strategy</span>
+      </div>
+    </div>
+  </div>
+  <div class="mpp-products rv">
+    <div class="mpp-prod">
+      <img src="COZY_WEATHER.jpeg" alt="Cozy Weather Candle" style="width:100%; aspect-ratio:1/1; object-fit:cover; display:block; margin-bottom:1.25rem;">
+      <p class="prod-type">Seasonal Luxury Candle</p>
+      <h3 class="prod-name">Cozy Weather</h3>
+      <p class="prod-desc">Sandalwood, vanilla, and amber. Emotional warmth and stillness packaged for the energy of home.</p>
+      <p class="prod-role">Scent direction · Packaging · Naming · Photography direction</p>
+    </div>
+    <div class="mpp-prod">
+      <img src="GUT_RESET.jpeg" alt="Gut Reset Wellness Ritual Powder" style="width:100%; aspect-ratio:1/1; object-fit:cover; display:block; margin-bottom:1.25rem;">
+      <p class="prod-type">Wellness Ritual Powder</p>
+      <h3 class="prod-name">Gut Reset</h3>
+      <p class="prod-desc">A nourishment-forward ritual blend for digestion and daily wellbeing. Modern neutral aesthetic.</p>
+      <p class="prod-role">Creative direction · Naming · Copywriting · Label design · Color palette</p>
+    </div>
+    <div class="mpp-prod">
+      <img src="TROPICAL_HEAT.jpeg" alt="Tropical Heat Foaming Sugar Scrub" style="width:100%; aspect-ratio:1/1; object-fit:cover; display:block; margin-bottom:1.25rem;">
+      <p class="prod-type">Foaming Sugar Scrub</p>
+      <h3 class="prod-name">Tropical Heat</h3>
+      <p class="prod-desc">Vibrant color, fragrance, and texture. Summer energy and soft luxury. A multi-sensory experience.</p>
+      <p class="prod-role">Formula aesthetic · Product design · Visual direction · Texture styling</p>
+    </div>
+    <div class="mpp-prod">
+      <img src="OCEAN_CALM.jpeg" alt="Ocean Calm Magnesium Spray" style="width:100%; aspect-ratio:1/1; object-fit:cover; display:block; margin-bottom:1.25rem;">
+      <p class="prod-type">Magnesium Spray</p>
+      <h3 class="prod-name">Ocean Calm</h3>
+      <p class="prod-desc">Relaxation and recovery. Serenity, ritual, and clean beauty aesthetics — bottled.</p>
+      <p class="prod-role">Brand storytelling · Packaging · Photography direction</p>
+    </div>
+  </div>
+</section>
+
+<section id="editorial">
+  <p class="slabel rv">05 — Editorial</p>
+  <h2 class="stitle rv">Editorial<br><em>Work</em></h2>
+  <div class="ed-grid">
+    <a class="ed-card rv" href="https://www.essence.com/lifestyle/hair-health/" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:block;">
+      <img src="ESSENCE_ARTICLE.jpeg" alt="Essence - Ways Your Lifestyle Can Wreak Havoc On Your Hair" style="width:100%; aspect-ratio:16/9; object-fit:cover; object-position:top; display:block; margin-bottom:1.25rem;">
+      <p class="ed-pub">Essence Magazine · Published Byline</p>
+      <h3 class="ed-title">Ways Your Lifestyle Can Wreak Havoc On Your Hair</h3>
+      <p class="ed-desc">Hair is identity. Published on Essence, this piece explores how diet, sleep, stress, and daily habits directly impact hair health — drawing on expert dermatologists to connect lifestyle to our strands.</p>
+      <p class="ed-role">Written by Ciarra Williams · Click to read on Essence →</p>
+    </a>
+    <a class="ed-card rv" href="https://thecincinnatiherald.com/2024/09/26/thatcher-hormonal-hair-care/" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:block; transition-delay:0.1s;">
+      <img src="https://i0.wp.com/thecincinnatiherald.com/wp-content/uploads/2024/09/pexels-cottonbro-4046314-scaled.jpg?fit=780%2C520&ssl=1" alt="Empowering women through holistic hair care" style="width:100%; aspect-ratio:16/9; object-fit:cover; display:block; margin-bottom:1.25rem;">
+      <p class="ed-pub">The Cincinnati Herald · Published Byline · September 2024</p>
+      <h3 class="ed-title">Empowering Women Through Holistic Hair Solutions</h3>
+      <p class="ed-desc">The story of Koree L. Thatcher — a salon owner who transformed her personal menopause struggles into a mission to support women through holistic hair care, integrating natural soul care with hormone health education.</p>
+      <p class="ed-role">Written by Ciarra Williams · Click to read on The Cincinnati Herald →</p>
+    </a>
+    <div class="ed-card rv">
+      <img src="YOU_GLOW_GIRL.jpeg" alt="You Glow Girl Scout Guide editorial" style="width:100%; aspect-ratio:16/9; object-fit:cover; display:block; margin-bottom:1.25rem;">
+      <p class="ed-pub">The Scout Guide Cincinnati · Editorial</p>
+      <h3 class="ed-title">You Glow Girl</h3>
+      <p class="ed-desc">A radiant editorial embracing glow, confidence, and individual brilliance — shifting from product-driven terminology to confidence-driven narrative. Positioning glow as an attitude more than a finish.</p>
+      <p class="ed-role">Conceptual direction · Visual mood-boarding · Talent &amp; texture selection · Hero-shot creation</p>
+    </div>
+    <a class="ed-card rv" href="https://thescoutguide.com/cincinnatinky/editorial/eat-drink-amp-be-merry-festive-cocktails-amp-cheese-to-wow-your-guests/" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:block;">
+      <img src="EAT_DRINK_BE_MERRY.jpeg" alt="Eat Drink Be Merry Scout Guide" style="width:100%; aspect-ratio:16/9; object-fit:cover; display:block; margin-bottom:1.25rem;">
+      <p class="ed-pub">The Scout Guide Cincinnati · Published Editorial</p>
+      <h3 class="ed-title">Eat, Drink &amp; Be Merry: Festive Cocktails &amp; Cheese to Wow Your Guests</h3>
+      <p class="ed-desc">Festive cocktails and cheese pairings to wow your guests — an elevated holiday entertaining editorial blending warm lighting, seasonal tablescapes, and the refined art of gathering.</p>
+      <p class="ed-role">Art direction · Editorial storytelling · Click to read on The Scout Guide →</p>
+    </a>
+    <a class="ed-card rv" href="https://cincinnatirefined.com/eat-drink/vegan-ish-vegan-vegetarian-brittany-long-cincinnati-sports-club-diet-recipes-healthy-lifestyle" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:block; transition-delay:0.1s;">
+      <img src="BRITTANY_ARTICLE.jpeg" alt="Vegan-ish Cincinnati Refined" style="width:100%; aspect-ratio:16/9; object-fit:cover; display:block; margin-bottom:1.25rem;">
+      <p class="ed-pub">Cincinnati Refined · Published Byline</p>
+      <h3 class="ed-title">Brittany Long Puts a Spin On Any Meal With Plant-Based Alternatives</h3>
+      <p class="ed-desc">A warm profile of Cincinnati native Brittany Long, who built a vegan-ish lifestyle around comfort food with plant-based twists — reframing healthy eating as joyful, flexible, and deeply personal rather than restrictive.</p>
+      <p class="ed-role">Written by Ciarra Williams · Click to read on Cincinnati Refined →</p>
+    </a>
+  </div>
+</section>
+
+<section id="expertise">
+  <p class="slabel light rv">06 — Capabilities</p>
+  <h2 class="stitle light rv">What I<br><em>Bring</em></h2>
+  <div class="exp-grid rv">
+    <div class="exp-col">
+      <p class="exp-col-label">Direction</p>
+      <ul class="exp-list"><li>Creative Direction</li><li>Art Direction</li><li>Campaign Concepting</li><li>Visual Mood Systems</li><li>Photography Direction</li><li>Video Concept Direction</li></ul>
+    </div>
+    <div class="exp-col">
+      <p class="exp-col-label">Strategy</p>
+      <ul class="exp-list"><li>Brand Strategy + Positioning</li><li>Content Direction</li><li>Editorial Storytelling</li><li>Audience Development</li><li>Platform Strategy</li><li>Brand Voice Development</li></ul>
+    </div>
+    <div class="exp-col">
+      <p class="exp-col-label">Design</p>
+      <ul class="exp-list"><li>Visual Identity Design</li><li>Packaging Design</li><li>Color Story + Typography</li><li>Mood Board Systems</li><li>Product Design Aesthetic</li><li>Brand World Building</li></ul>
+    </div>
+    <div class="exp-col">
+      <p class="exp-col-label">Writing</p>
+      <ul class="exp-list"><li>Copywriting</li><li>Editorial Writing</li><li>Campaign Messaging</li><li>Product Naming</li><li>Long-Form Narrative</li><li>Brand Voice + Tone</li></ul>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <img src="CIARRA_HEADSHOT.jpeg" alt="Ciarra Williams" style="width:120px; height:120px; border-radius:50%; object-fit:cover; object-position:top; display:block; margin:0 auto 2rem; border:3px solid rgba(255,255,255,0.25);">
+  <p class="slabel">07 — Contact</p>
+  <h2 class="stitle">Let's Create Work<br><em>With Depth.</em></h2>
+  <p class="contact-body">I collaborate with brands and founders who value elevated storytelling, intentional aesthetics, and creative direction rooted in emotion, beauty, and clarity. Strategic thinking, refined taste, and creative leadership — on every project.</p>
+  <p class="contact-detail">Cincinnati, OH · Open to Remote + Travel · crzyyon@gmail.com</p>
+  <div class="cta-row">
+    <a href="mailto:crzyyon@gmail.com" class="btn btn-white">Get in Touch</a>
+    <a href="#featured" class="btn btn-ghost-r">View the Work</a>
+  </div>
+  <div class="service-tags">
+    <span class="stag">Creative Direction</span><span class="stag">Art Direction</span><span class="stag">Brand Strategy</span><span class="stag">Campaign Concepting</span><span class="stag">Visual Identity</span><span class="stag">Content Direction</span><span class="stag">Editorial Storytelling</span><span class="stag">Packaging Design</span><span class="stag">Copywriting</span><span class="stag">Photography Direction</span>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 Ciarra Williams · The Stories We Tell LLC</p>
+  <div class="foot-links">
+    <a href="#">LinkedIn</a>
+    <a href="#">Threads</a>
+    <a href="https://mypurepackage.com/" target="_blank" rel="noopener noreferrer">My Pure Package</a>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } }), { threshold: 0.1 });
+  document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
